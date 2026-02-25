@@ -12,6 +12,16 @@
       "supportsTablet": true
     },
     "android": {
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            { "scheme": "premierenight", "host": "watchlist", "pathPrefix": "/" },
+            { "scheme": "premierenight", "pathPrefix": "/watchlist" }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

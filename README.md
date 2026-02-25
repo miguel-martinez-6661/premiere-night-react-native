@@ -1,50 +1,38 @@
-# Welcome to your Expo app 👋
+# Premiere Night
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A cross-platform React Native app that helps curators discover films and manage a watchlist for private screening events. Built with Expo.
 
-## Get started
+## Tooling and prerequisites
 
-1. Install dependencies
+- **Node.js** — LTS (e.g. 20+) recommended
+- **npm** or **bun** — for installing dependencies
+- **Expo** — use via `npx expo` (no global install required)
+- **TMDb API key** — create one at [themoviedb.org](https://www.themoviedb.org/settings/api). Set it as `EXPO_PUBLIC_TMDB_API_KEY` in a `.env` or `.env.local` file in the project root (see [Expo env vars](https://docs.expo.dev/guides/environment-variables/)).
 
-   ```bash
-   npm install
-   ```
+## Run the app
 
-2. Start the app
+1. Install dependencies:
+  ```bash
+  bun install
+  ```
+   or with bun:
+2. Ensure `EXPO_PUBLIC_TMDB_API_KEY` is set (e.g. in `.env` or `.env.local`).
+3. Start the dev server:
+  ```bash
+  bun run start
+  ```
+4. Run on a platform:
+  - **iOS**: Press `i` in the terminal (Expo Go) or run `npx expo run:ios` (development build).
+  - **Android**: Press `a` in the terminal (Expo Go) or run `npx expo run:android` (development build).
 
-   ```bash
-   npx expo start
-   ```
+Watchlist persistence uses the device file system (expo-file-system). It works in development builds; in Expo Go, behavior may depend on the environment.
 
-In the output, you'll find options to open the app in a
+**Deep link to Watchlist:** Open `premierenight://watchlist` or `premierenight:///watchlist` to go straight to the watchlist (e.g. from a shortcut, widget, or another app).
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Architecture and trade-offs
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Stack**: Expo SDK 54, Expo Router (file-based routing), TanStack React Query (server state), Zustand (watchlist state + persistence).
+- **Structure**: `apis/tmdb/` (client, API functions, raw→domain mapper, types), `types/` and `constants/` (shared), `store/` (watchlist + file-based persist), `components/`, `queries/`, `app/` (screens).
+- **Trade-offs**: Watchlist is persisted with expo-file-system (file storage) instead of AsyncStorage to avoid native module issues in some Expo Go / dev setups. List endpoints (now playing, popular, search) share a single `fetchPaginated` helper to keep the API layer small.
+- **Assumptions**: Search is by **title only** (no genre filter). Content language is English (TMDb `en-US`). The watchlist stores minimal summary data (poster, title, release date, etc.); the full synopsis is not stored on the watchlist screen.
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
