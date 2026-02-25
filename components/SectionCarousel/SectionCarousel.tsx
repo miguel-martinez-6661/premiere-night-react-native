@@ -17,7 +17,21 @@ export function SectionCarousel({ title, movies, isLoading, isError }: SectionCa
   }
 
   if (isError) {
-    return <Text>Could not load movies.</Text>;
+    return (
+      <View style={styles.section}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.emptyText}>Could not load movies.</Text>
+      </View>
+    );
+  }
+
+  if (movies.length === 0) {
+    return (
+      <View style={styles.section}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.emptyText}>No movies found.</Text>
+      </View>
+    );
   }
 
   return (
@@ -53,5 +67,11 @@ const styles = StyleSheet.create({
   },
   separator: {
     width: CARD_GAP,
+  },
+  emptyText: {
+    fontSize: 15,
+    color: "#666",
+    paddingHorizontal: LIST_PADDING_H,
+    paddingVertical: 12,
   },
 });

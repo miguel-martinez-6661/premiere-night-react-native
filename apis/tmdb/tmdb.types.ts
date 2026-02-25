@@ -1,5 +1,3 @@
-/** Raw TMDb API response shapes. Domain types live in @/types. */
-
 export interface TmdbGenreRaw {
   id: number;
   name: string;
@@ -24,5 +22,4 @@ export interface TmdbPaginatedResponseRaw {
   total_results: number;
 }
 
-// Re-export domain types for API layer convenience
 export type { Genre, MovieDetail, MovieSummary } from "@/types";

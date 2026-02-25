@@ -3,7 +3,6 @@ import { TMDB_BASE_URL, TMDB_LANGUAGE } from "@/constants";
 const baseUrl = TMDB_BASE_URL;
 const language = TMDB_LANGUAGE;
 
-/** Set via env (e.g. EXPO_PUBLIC_TMDB_API_KEY) or at runtime. */
 let apiKey = process.env.EXPO_PUBLIC_TMDB_API_KEY ?? "";
 
 export function setTmdbApiKey(key: string) {
@@ -25,7 +24,10 @@ export class TmdbError extends Error {
   }
 }
 
-async function buildUrl(path: string, params: Record<string, string> = {}): Promise<string> {
+async function buildUrl(
+  path: string,
+  params: Record<string, string> = {}
+): Promise<string> {
   const search = new URLSearchParams({
     language,
     ...params,
@@ -39,7 +41,7 @@ export async function tmdbRequest<T>(
   params: Record<string, string> = {}
 ): Promise<T> {
   if (!apiKey) {
-    throw new TmdbError("TMDb API key is not set. Set EXPO_PUBLIC_TMDB_API_KEY or call setTmdbApiKey().");
+    throw new TmdbError("TMDb API key is not set.");
   }
 
   const url = await buildUrl(path, params);
