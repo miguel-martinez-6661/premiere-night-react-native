@@ -1,18 +1,18 @@
-import type { MovieSummary } from "@/apis/tmdb/tmdb.types";
+import type { MovieSummary } from "@/types";
 import { getTmdbPosterUrl } from "@/apis/tmdb/tmdb.utils";
 import { formatReleaseDate } from "@/components/MovieCard/helpers";
+import {
+  LIST_PADDING_H,
+  WATCHLIST_CARD_GAP,
+  WATCHLIST_POSTER_HEIGHT,
+  WATCHLIST_POSTER_WIDTH,
+} from "@/constants";
 import { useWatchlistStore } from "@/store/watchlistStore";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useCallback } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const LIST_PADDING_H = 16;
-const CARD_GAP = 16;
-const POSTER_WIDTH = 100;
-const POSTER_ASPECT = 2 / 3;
-const POSTER_HEIGHT = POSTER_WIDTH / POSTER_ASPECT;
 
 function WatchlistRow({
   movie,
@@ -120,7 +120,7 @@ export default function Watchlist() {
           renderItem={renderItem}
           contentContainerStyle={[
             styles.listContent,
-            { paddingBottom: insets.bottom + CARD_GAP },
+            { paddingBottom: insets.bottom + WATCHLIST_CARD_GAP },
           ]}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           showsVerticalScrollIndicator={false}
@@ -160,10 +160,10 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: LIST_PADDING_H,
-    paddingTop: CARD_GAP,
+    paddingTop: WATCHLIST_CARD_GAP,
   },
   separator: {
-    height: CARD_GAP,
+    height: WATCHLIST_CARD_GAP,
   },
   row: {
     flexDirection: "row",
@@ -172,14 +172,14 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     overflow: "hidden",
     paddingRight: 12,
-    minHeight: POSTER_HEIGHT + 24,
+    minHeight: WATCHLIST_POSTER_HEIGHT + 24,
   },
   rowPressed: {
     opacity: 0.96,
   },
   posterWrap: {
-    width: POSTER_WIDTH,
-    height: POSTER_HEIGHT,
+    width: WATCHLIST_POSTER_WIDTH,
+    height: WATCHLIST_POSTER_HEIGHT,
     margin: 12,
     borderRadius: 10,
     overflow: "hidden",

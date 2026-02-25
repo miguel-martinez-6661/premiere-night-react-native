@@ -1,10 +1,6 @@
+import { BORDER_RADIUS, CARD_WIDTH, POSTER_HEIGHT } from "@/constants";
 import { useEffect, useRef } from "react";
 import { Animated, StyleSheet, View } from "react-native";
-
-const CARD_WIDTH = 140;
-const POSTER_ASPECT = 2 / 3;
-const POSTER_HEIGHT = CARD_WIDTH / POSTER_ASPECT;
-const BORDER_RADIUS = 12;
 
 export function MovieCardSkeleton() {
   const opacity = useRef(new Animated.Value(0.4)).current;

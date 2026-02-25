@@ -1,12 +1,11 @@
 import { HeroSection, SearchBar, SectionCarousel } from "@/components";
+import { DEFAULT_PAGE } from "@/constants";
 import { useMovieSearchQuery } from "@/queries/useMovieSearchQuery";
 import { useNowPlayingQuery } from "@/queries/useNowPlayingQuery";
 import { usePopularQuery } from "@/queries/usePopularQuery";
 import { useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const DEFAULT_PAGE = 1;
 
 export default function Home() {
   const insets = useSafeAreaInsets();
@@ -32,7 +31,9 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{ marginTop: -insets.top }}>
+      <ScrollView
+        style={{ marginTop: Platform.OS === "ios" ? -insets.top : 0 }}
+      >
         <HeroSection
           title="Welcome to Premiere Night."
           subtitle="Millions of movies, series and people to discover. Explore now."

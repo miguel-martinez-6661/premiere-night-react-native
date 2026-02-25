@@ -1,3 +1,4 @@
+import { PARALLAX_HEADER_HEIGHT } from "@/constants";
 import type { PropsWithChildren, ReactElement } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, {
@@ -6,8 +7,6 @@ import Animated, {
   useAnimatedStyle,
   useScrollOffset,
 } from "react-native-reanimated";
-
-const HEADER_HEIGHT = 400;
 
 export type ParallaxScrollViewProps = PropsWithChildren<{
   headerImage: ReactElement;
@@ -27,14 +26,14 @@ export function ParallaxScrollView({
       {
         translateY: interpolate(
           scrollOffset.value,
-          [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-          [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75]
+          [-PARALLAX_HEADER_HEIGHT, 0, PARALLAX_HEADER_HEIGHT],
+          [-PARALLAX_HEADER_HEIGHT / 2, 0, PARALLAX_HEADER_HEIGHT * 0.75]
         ),
       },
       {
         scale: interpolate(
           scrollOffset.value,
-          [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
+          [-PARALLAX_HEADER_HEIGHT, 0, PARALLAX_HEADER_HEIGHT],
           [2, 1, 1]
         ),
       },
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    height: HEADER_HEIGHT,
+    height: PARALLAX_HEADER_HEIGHT,
     overflow: "hidden",
   },
   content: {

@@ -1,16 +1,13 @@
 import { MovieCardSkeleton } from "@/components/MovieCard/MovieCardSkeleton";
+import { CARD_GAP, LIST_PADDING_H, SKELETON_CARD_COUNT } from "@/constants";
 import { FlatList, StyleSheet, View } from "react-native";
-
-const CARD_GAP = 12;
-const LIST_PADDING_H = 16;
-const SKELETON_COUNT = 5;
 
 export function SectionCarouselSkeleton() {
   return (
     <View style={styles.section}>
       <View style={styles.titleSkeleton} />
       <FlatList
-        data={Array.from({ length: SKELETON_COUNT }, (_, i) => i)}
+        data={Array.from({ length: SKELETON_CARD_COUNT }, (_, i) => i)}
         keyExtractor={(id) => String(id)}
         renderItem={() => <MovieCardSkeleton />}
         horizontal

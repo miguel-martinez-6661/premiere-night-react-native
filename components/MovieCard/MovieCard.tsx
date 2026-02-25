@@ -1,9 +1,9 @@
-import type { MovieSummary } from "@/apis/tmdb/tmdb.types";
 import { getTmdbPosterUrl } from "@/apis/tmdb/tmdb.utils";
+import { BORDER_RADIUS, CARD_WIDTH, POSTER_HEIGHT } from "@/constants";
+import type { MovieSummary } from "@/types";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { BORDER_RADIUS, CARD_WIDTH, POSTER_HEIGHT } from "./constants";
 import { formatReleaseDate, voteToPercent } from "./helpers";
 
 export interface MovieCardProps {
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     gap: 2,
+    padding: 4,
   },
   poster: {
     width: "100%",

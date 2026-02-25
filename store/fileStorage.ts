@@ -24,10 +24,9 @@ export function createFileStorage(): StateStorage {
       const fileName = `${name}.json`;
       const file = new File(Paths.document, fileName) as FileWithText;
       if (!file.exists) {
-        Paths.document.createFile(fileName, "application/json");
+        file.create();
       }
-      const f = new File(Paths.document, fileName) as FileWithText;
-      f.write(value);
+      file.write(value);
     },
     removeItem: async (name: string): Promise<void> => {
       try {

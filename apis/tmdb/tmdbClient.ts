@@ -1,5 +1,7 @@
-const baseUrl = "https://api.themoviedb.org/3";
-const language = "en-US";
+import { TMDB_BASE_URL, TMDB_LANGUAGE } from "@/constants";
+
+const baseUrl = TMDB_BASE_URL;
+const language = TMDB_LANGUAGE;
 
 /** Set via env (e.g. EXPO_PUBLIC_TMDB_API_KEY) or at runtime. */
 let apiKey = process.env.EXPO_PUBLIC_TMDB_API_KEY ?? "";

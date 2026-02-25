@@ -1,3 +1,4 @@
+import { SEARCH_DEBOUNCE_MS } from "@/constants";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useCallback, useState } from "react";
 import {
@@ -28,7 +29,7 @@ export function SearchBar({
 
   const debouncedOnSearch = useDebounce((text: string) => {
     onSearch(text.trim());
-  }, 500);
+  }, SEARCH_DEBOUNCE_MS);
 
   const handleChangeText = useCallback(
     (text: string) => {

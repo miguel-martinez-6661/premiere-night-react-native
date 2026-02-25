@@ -1,10 +1,8 @@
-import type { MovieSummary } from "@/apis/tmdb/tmdb.types";
+import type { MovieSummary } from "@/types";
 import { MovieCard } from "@/components/MovieCard/MovieCard";
+import { CARD_GAP, LIST_PADDING_H } from "@/constants";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { SectionCarouselSkeleton } from "./SectionCarouselSkeleton";
-
-const CARD_GAP = 12;
-const LIST_PADDING_H = 16;
 
 export interface SectionCarouselProps {
   title: string;

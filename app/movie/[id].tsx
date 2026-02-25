@@ -1,24 +1,12 @@
-import type { MovieDetail } from "@/apis/tmdb/tmdb.types";
 import { getTmdbPosterUrl } from "@/apis/tmdb/tmdb.utils";
-import { IconSymbol } from "@/app-example/components/ui/icon-symbol";
 import { ParallaxScrollView } from "@/components";
 import { formatReleaseDate } from "@/components/MovieCard/helpers";
+import { movieDetailToSummary } from "@/lib/movie";
 import { useMovieDetailQuery } from "@/queries/useMovieDetailQuery";
 import { useWatchlistStore } from "@/store/watchlistStore";
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-
-function detailToSummary(movie: MovieDetail) {
-  return {
-    id: movie.id,
-    title: movie.title,
-    posterPath: movie.posterPath,
-    genreIds: movie.genres.map((g) => g.id),
-    releaseDate: movie.releaseDate,
-    voteAverage: null as number | null,
-  };
-}
 
 export default function Movie() {
   const { id } = useLocalSearchParams();
@@ -42,7 +30,7 @@ export default function Movie() {
   const posterUri = getTmdbPosterUrl(movie.posterPath);
 
   const handleAddOrRemoveFromWatchlist = () => {
-    toggleWatchlist(detailToSummary(movie));
+    toggleWatchlist(movieDetailToSummary(movie));
   };
 
   return (
@@ -68,7 +56,7 @@ export default function Movie() {
           Release Date: {formatReleaseDate(movie.releaseDate) || "N/A"}
         </Text>
         <Text style={styles.metadata}>
-          Genres: {movie.genres.map((g: any) => g.name).join(", ")}
+          Genres: {movie.genres.map((g) => g.name).join(", ")}
         </Text>
         <Pressable
           style={({ pressed }) => [
@@ -77,11 +65,10 @@ export default function Movie() {
           ]}
           onPress={handleAddOrRemoveFromWatchlist}
         >
-          <IconSymbol
-            name={isInWatchlist ? "minus.circle" : "plus.circle"}
-            color="#0b9edb"
-          />
-          <Text style={{ color: "#0b9edb", fontSize: 16, fontWeight: "bold" }}>
+          <Text style={styles.watchlistIcon}>
+            {isInWatchlist ? "−" : "+"}
+          </Text>
+          <Text style={styles.watchlistLabel}>
             {isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </Text>
         </Pressable>
@@ -116,5 +103,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     marginTop: 12,
+  },
+  watchlistIcon: {
+    color: "#0b9edb",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  watchlistLabel: {
+    color: "#0b9edb",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

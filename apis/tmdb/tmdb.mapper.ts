@@ -1,9 +1,5 @@
-import type {
-  Genre,
-  MovieDetail,
-  MovieSummary,
-  TmdbMovieRaw,
-} from "./tmdb.types";
+import type { Genre, MovieDetail, MovieSummary } from "@/types";
+import type { TmdbMovieRaw } from "./tmdb.types";
 
 export function mapRawToMovieSummary(raw: TmdbMovieRaw): MovieSummary {
   return {

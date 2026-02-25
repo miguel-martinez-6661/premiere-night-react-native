@@ -1,4 +1,5 @@
-import type { MovieSummary } from "@/apis/tmdb/tmdb.types";
+import type { MovieSummary } from "@/types";
+import { WATCHLIST_STORAGE_KEY } from "@/constants";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { createFileStorage } from "./fileStorage";
@@ -32,7 +33,7 @@ export const useWatchlistStore = create<WatchlistState>()(
       },
     }),
     {
-      name: "premiere-night-watchlist",
+      name: WATCHLIST_STORAGE_KEY,
       storage: createJSONStorage(() => createFileStorage()),
     }
   )
