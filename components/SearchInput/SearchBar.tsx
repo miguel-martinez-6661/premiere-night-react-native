@@ -1,5 +1,7 @@
 import { SEARCH_DEBOUNCE_MS } from "@/constants";
 import { useDebounce } from "@/hooks/useDebounce";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+
 import { useCallback, useState } from "react";
 import {
   StyleProp,
@@ -41,6 +43,7 @@ export function SearchBar({
 
   return (
     <View style={[styles.wrapper, containerStyle]}>
+      <MaterialIcons name="search" size={32} color="black" />
       <TextInput
         {...rest}
         value={localValue}
@@ -55,15 +58,18 @@ export function SearchBar({
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    borderRadius: 10,
+    backgroundColor: "transparent",
   },
   input: {
     height: 44,
-    paddingHorizontal: 14,
     borderRadius: 10,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#ffffff",
     fontSize: 16,
     color: "#111",
+    overflow: "hidden",
   },
 });

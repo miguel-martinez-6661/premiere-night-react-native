@@ -1,6 +1,7 @@
 import { getTmdbPosterUrl } from "@/apis/tmdb/tmdb.utils";
 import { BORDER_RADIUS, CARD_WIDTH, POSTER_HEIGHT } from "@/constants";
 import type { MovieSummary } from "@/types";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -25,7 +26,12 @@ export function MovieCard({ movie }: MovieCardProps) {
         {posterUri ? (
           <Image source={posterUri} style={styles.poster} contentFit="cover" />
         ) : (
-          <View style={styles.posterPlaceholder} />
+          <View style={styles.posterPlaceholder}>
+            <MaterialIcons name="movie" size={32} color="#666" />
+            <Text style={styles.posterPlaceholderText}>
+              No poster available
+            </Text>
+          </View>
         )}
         {percent != null ? (
           <View style={styles.ratingBadge}>
@@ -77,10 +83,17 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS,
   },
   posterPlaceholder: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     width: "100%",
     height: "100%",
     borderRadius: BORDER_RADIUS,
     backgroundColor: "#ccc",
+  },
+  posterPlaceholderText: {
+    color: "#666",
+    fontSize: 12,
   },
   ratingBadge: {
     position: "absolute",

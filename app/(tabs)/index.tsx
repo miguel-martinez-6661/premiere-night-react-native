@@ -41,7 +41,7 @@ export default function Home() {
           <View style={styles.searchArea}>
             <View style={styles.searchPill}>
               <SearchBar
-                placeholder="Buscar..."
+                placeholder="Search for a movie..."
                 onSearch={setSearchQuery}
                 containerStyle={styles.searchBarContainer}
                 inputStyle={styles.searchBarInput}
@@ -100,8 +100,7 @@ const styles = StyleSheet.create({
   },
   searchBarContainer: {
     flex: 1,
-    paddingHorizontal: 0,
-    paddingVertical: 0,
+    paddingHorizontal: 16,
   },
   searchBarInput: {
     backgroundColor: "transparent",
