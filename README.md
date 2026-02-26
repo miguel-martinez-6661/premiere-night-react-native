@@ -36,3 +36,25 @@ Watchlist persistence uses the device file system (expo-file-system). It works i
 - **Trade-offs**: Watchlist is persisted with expo-file-system (file storage) instead of AsyncStorage to avoid native module issues in some Expo Go / dev setups. List endpoints (now playing, popular, search) share a single `fetchPaginated` helper to keep the API layer small.
 - **Assumptions**: Search is by **title only** (no genre filter). Content language is English (TMDb `en-US`). The watchlist stores minimal summary data (poster, title, release date, etc.); the full synopsis is not stored on the watchlist screen.
 
+
+## Screenshots
+
+<table>
+  <thead>
+    <td>Home</td>
+    <td>Search Movie</td>
+    <td>Movie Detail</td>
+    <td>Watchlist</td>
+  </thead>
+  <tbody>
+    <tr>
+        <td><img alt="image" src="https://github.com/user-attachments/assets/7a8196ac-7f2a-4a38-a588-a20f40eb46ee" /></td>
+        <td><img alt="image" src="https://github.com/user-attachments/assets/0d117225-d544-4945-a9a9-e8059694c780" /></td>
+        <td><img alt="image" src="https://github.com/user-attachments/assets/96f86d96-1510-43e6-a8c3-8ab735d84f63" /></td>
+        <td><img alt="image" src="https://github.com/user-attachments/assets/c6330fac-0c69-4aab-9b3b-d3b10b4318f5" /></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
